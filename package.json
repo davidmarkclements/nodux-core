@@ -2,13 +2,8 @@
   "name": "nodux-core",
   "version": "0.0.1",
   "files": [
-    "download.js",
-    "build.sh",
-    "include"
+    "os"
   ],
-  "scripts": {
-    "postinstall": "node download && ./build.sh"
-  },
   "author": "David Mark Clements",
   "license": "MIT",
   "dependencies": {

@@ -4,7 +4,11 @@ A Tiny Core Linux build that includes node.js
 
 The basis of nodux.
 
+The published npm module only contains the `os` folder. 
+
 ## Developer Notes
+
+To run generate the `os` folder, git clone this repo.
 
 ### Download
 
