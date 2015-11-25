@@ -1,0 +1,14 @@
+{
+  "name": "nodux-core",
+  "version": "0.0.1",
+  "files": [
+    "download.js",
+    "build.sh",
+    "include"
+  ],
+  "author": "David Mark Clements",
+  "license": "MIT",
+  "dependencies": {
+    "nugget": "^1.6.0"
+  }
+}
