@@ -6,6 +6,9 @@
     "build.sh",
     "include"
   ],
+  "scripts": {
+    "postinstall": "node download && ./build.sh"
+  },
   "author": "David Mark Clements",
   "license": "MIT",
   "dependencies": {
