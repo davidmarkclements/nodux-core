@@ -14,7 +14,11 @@ nugget([
   server + 'tcz/openssl.tcz',
   server + 'tcz/coreutils.tcz',
   server + 'tcz/binutils.tcz',
-  server + 'tcz/file.tcz'
+  server + 'tcz/file.tcz',
+  server + 'tcz/iproute2.tcz',
+  server + 'tcz/libcap.tcz',
+  server + 'tcz/acl.tcz',
+  server + 'tcz/attr.tcz',
 ], {verbose: true, dir: path.join(__dirname, 'src')}, function(err) {
   if (err) {
     console.error('Error:', err)
