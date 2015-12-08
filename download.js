@@ -11,6 +11,7 @@ nugget([
   dist + 'vmlinuz64',
   server + 'tcz/fuse.tcz',
   server + 'tcz/openssh.tcz',
+  server + 'tcz/openssl.tcz',
   server + 'tcz/coreutils.tcz',
   server + 'tcz/binutils.tcz',
   server + 'tcz/file.tcz'
