@@ -1,12 +1,15 @@
 {
   "name": "nodux-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "files": [
     "os"
   ],
   "author": "David Mark Clements",
   "license": "MIT",
   "dependencies": {
-    "nugget": "^1.6.0"
+    "nugget": "^1.6.0",
+    "download-stream": "^1.0.1",
+    "nugget": "^1.6.0",
+    "progress-stream": "^1.2.0"
   }
 }

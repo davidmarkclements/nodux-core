@@ -43,6 +43,12 @@ rm -rf "node-v${NODE_VERSION}-linux-x64"
 # copy our files in
 sudo rsync --recursive include/ dist
 
+# get python executables:
+(cd dist/usr/local/share/python/files ; sudo tar xf files.tar.gz)
+sudo mkdir -p ./dist/usr/local/bin
+sudo mv ./dist/usr/local/share/python/files/usr/local/bin/* ./dist/usr/local/bin/
+sudo rm -fr dist/usr/local/share/python
+
 # repackage core into final output
 (cd dist ; sudo find . | sudo cpio -o -H newc) | gzip -c > initrd.gz
 

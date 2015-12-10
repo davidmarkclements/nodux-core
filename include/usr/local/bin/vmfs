@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var net = require('net')
+var proc = require('child_process')
+
+net.createServer(function (sock) {
+  sock.server.getConnections(function (err, connections) {
+    if (err) return sock.end() && console.error(JSON.stringify(err))
+    if (connections > 1) return sock.end() && console.error('already have a connection')
+
+    var child = proc.spawn('hyperfused', ['/host', '-'])
+
+    child.stderr.pipe(process.stderr)
+
+    child.stdout.pipe(sock).pipe(child.stdin)
+
+    sock.on('close', function () {
+      child.kill()
+    })
+  })
+
+}).listen(10009)
