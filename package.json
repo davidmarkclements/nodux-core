@@ -1,10 +1,14 @@
 {
   "name": "nodux-core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "files": [
     "os"
   ],
   "author": "David Mark Clements",
+  "scripts": {
+    "prepublish": "node download.js && ./build.sh v5.2.0",
+    "postinstall": "cat node_modules/nodux-core-a/initrd.part node_modules/nodux-core-b/initrd.part > os/initrd.gz"
+  },
   "license": "MIT",
   "dependencies": {
     "nugget": "^1.6.0",

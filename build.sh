@@ -30,14 +30,14 @@ sudo ln -s ./lib ./lib64
 cd ../
 
 # install node
-export NODE_VERSION='5.1.1'
-./node_modules/.bin/nugget  "http://nodejs.org/dist/v$NODE_VERSION/node-v${NODE_VERSION}-linux-x64.tar.gz"
-tar -xzf "node-v${NODE_VERSION}-linux-x64.tar.gz"
-cd "node-v${NODE_VERSION}-linux-x64"
+export NODE_VERSION=${1-'v5.2.0'}
+./node_modules/.bin/nugget  "http://nodejs.org/dist/$NODE_VERSION/node-${NODE_VERSION}-linux-x64.tar.gz"
+tar -xzf "node-${NODE_VERSION}-linux-x64.tar.gz"
+cd "node-${NODE_VERSION}-linux-x64"
 sudo cp -R . ../dist/usr/local
 cd ..
-rm "node-v${NODE_VERSION}-linux-x64.tar.gz"
-rm -rf "node-v${NODE_VERSION}-linux-x64"
+rm "node-${NODE_VERSION}-linux-x64.tar.gz"
+rm -rf "node-${NODE_VERSION}-linux-x64"
 
 
 # copy our files in
@@ -57,7 +57,13 @@ sudo rm -fr dist/usr/local/share/python
 sudo rm -rf dist
 
 mkdir -p os
-mv initrd.gz os
+split -b 35m initrd.gz
+mv xaa parts/nodux-core-a/initrd.part
+mv xab parts/nodux-core-b/initrd.part
+rm initrd.gz
 cp src/vmlinuz64 os
+
+
+
 
 echo "done"

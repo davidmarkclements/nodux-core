@@ -5,10 +5,10 @@
  *
  *  VM Node Process Bootstap 
  *   
- *  node [node flags] nodux.js <host-cwd> <host-dirname> <host-env-json> <filename> [app flags]
- *
+ *  sudo node [node flags] nodux.js <host-cwd> <host-dirname> <host-env-json> <filename> [app flags]
+ *  
  *  Prepares environment to run host code in vm
- *  * creates chroot at host mount relay (/host)
+ *  * creates chroot at host mount relay (/host) (chroot posix syscall requires sudo access)
  *  * changes cwd to cwd on host machine
  *  * parses and reconfigures args as they would normally apply
  *  * applies environment variables of host machine to vm process.env
