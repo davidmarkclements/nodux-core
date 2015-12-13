@@ -6,14 +6,16 @@
   ],
   "author": "David Mark Clements",
   "scripts": {
-    "prepublish": "node download.js && ./build.sh v5.2.0",
-    "postinstall": "cat node_modules/nodux-core-a/initrd.part node_modules/nodux-core-b/initrd.part > os/initrd.gz"
+    "build": "node download.js; ./build.sh v5.2.0; (cd parts/nodux-core-a; npm version patch; npm pub); (cd parts/nodux-core-b; npm version patch; npm pub)",
+    "postinstall": "cat $(node -p \"require('nodux-core-a')\") $(node -p \"require('nodux-core-b')\") > os/initrd.gz"
   },
   "license": "MIT",
+  "devDependencies": {
+    "nugget": "^1.6.0",
+    "download-stream": "^1.0.1"
+  },
   "dependencies": {
-    "nugget": "^1.6.0",
-    "download-stream": "^1.0.1",
-    "nugget": "^1.6.0",
-    "progress-stream": "^1.2.0"
+    "nodux-core-a": "0.0.0",
+    "nodux-core-b": "0.0.0"
   }
 }
