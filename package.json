@@ -1,6 +1,6 @@
 {
   "name": "nodux-core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "files": [
     "os"
   ],
@@ -15,7 +15,7 @@
     "download-stream": "^1.0.1"
   },
   "dependencies": {
-    "nodux-core-a": "0.0.0",
-    "nodux-core-b": "0.0.0"
+    "nodux-core-a": "0.0.1",
+    "nodux-core-b": "0.0.1"
   }
 }
