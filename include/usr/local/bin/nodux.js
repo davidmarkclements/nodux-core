@@ -41,6 +41,6 @@ process.chdir(cwd)
 
 process.argv[1] = require.resolve(path.resolve(cwd, filename))
 
-process.argv.splice(2, 3)
+process.argv.splice(2, 4)
 
 Module.runMain()
