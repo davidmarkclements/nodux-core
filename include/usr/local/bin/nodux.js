@@ -5,7 +5,7 @@
  *
  *  VM Node Process Bootstap 
  *   
- *  sudo node [node flags] nodux.js <host-cwd> <host-dirname> <host-env-json> <filename> [app flags]
+ *  sudo node [node flags] nodux.js <host-cwd> <host-env-json> <filename> [app flags]
  *  
  *  Prepares environment to run host code in vm
  *  * creates chroot at host mount relay (/host) (chroot posix syscall requires sudo access)
@@ -16,6 +16,7 @@
  */
 
 var Module = require('module')
+var path = require('path')
 var fs = require('fs')
 var posix = require('../lib/node_modules/posix')
 process.chdir('/host')
@@ -26,17 +27,19 @@ Object.keys(require.cache).forEach(function (k) {
 })
 
 var cwd = process.argv[2]
-var dirname = process.argv[3]
-var hostenv = JSON.parse(process.argv[4])
-var filename = process.argv[5]
+var hostenv = JSON.parse(process.argv[3])
+var filename = process.argv[4]
 
-Object.keys(hostenv).forEach(function (k) {
-  process.env[k] = hostenv[k]
-})
+process.vmEnv = process.env
+
+process.env = Object.keys(hostenv).reduce(function (o, k) {
+  o[k] = hostenv[k]
+  return o
+}, {})
 
 process.chdir(cwd)
 
-process.argv[1] = require.resolve(path.resolve(dirname, filename))
+process.argv[1] = require.resolve(path.resolve(cwd, filename))
 
 process.argv.splice(2, 3)
 
