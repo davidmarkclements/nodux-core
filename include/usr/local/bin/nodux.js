@@ -71,7 +71,7 @@ if (!filename) {
 
 process.argv[1] = require.resolve(path.resolve(cwd, filename))
 
-process.argv.splice(2, 4)
+process.argv.splice(0, 1)
 
 Module.runMain()
 
@@ -115,7 +115,7 @@ function checkSyntax() {
   var vm = require('vm')
   var fs = require('fs')
   var Module = require('module')
-  var source = fs.readFileSync(require.resolve(path.join(cwd, filename)), 'utf-8')
+  var source = fs.readFileSync(require.resolve(path.resolve(cwd, filename)), 'utf-8')
   // remove shebang and BOM
   source = stripBom(source.replace(/^\#\!.*/, ''))
   // wrap it
