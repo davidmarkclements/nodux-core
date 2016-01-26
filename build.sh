@@ -30,7 +30,7 @@ sudo ln -s ./lib ./lib64
 cd ../
 
 # install node
-export NODE_VERSION=${1-'v5.2.0'}
+export NODE_VERSION=${1-'v5.5.0'}
 ./node_modules/.bin/nugget  "http://nodejs.org/dist/$NODE_VERSION/node-${NODE_VERSION}-linux-x64.tar.gz"
 tar -xzf "node-${NODE_VERSION}-linux-x64.tar.gz"
 cd "node-${NODE_VERSION}-linux-x64"
