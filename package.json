@@ -6,7 +6,7 @@
   ],
   "author": "David Mark Clements",
   "scripts": {
-    "build": "node download.js; ./build.sh v5.2.0; (cd parts/nodux-core-a; npm version patch; npm pub); (cd parts/nodux-core-b; npm version patch; npm pub)",
+    "build": "node download.js; ./build.sh v5.5.0; (cd parts/nodux-core-a; npm version patch; npm pub); (cd parts/nodux-core-b; npm version patch; npm pub)",
     "postinstall": "cat $(node -p \"require('nodux-core-a')\") $(node -p \"require('nodux-core-b')\") > os/initrd.gz"
   },
   "license": "MIT",
@@ -15,8 +15,8 @@
     "download-stream": "^1.0.1"
   },
   "dependencies": {
-    "nodux-core-a": "0.0.6",
-    "nodux-core-b": "0.0.6"
+    "nodux-core-a": "0.0.9",
+    "nodux-core-b": "0.0.9"
   },
   "description": "A Tiny Core Linux build that includes node.js",
   "main": "download.js",

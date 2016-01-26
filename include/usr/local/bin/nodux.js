@@ -69,9 +69,11 @@ if (!filename) {
   return require('repl').start('> ')
 }
 
-process.argv[1] = require.resolve(path.resolve(cwd, filename))
+process.argv.splice(1, 1)
 
-process.argv.splice(0, 1)
+if (process.argv[1][0] !== '.' && process.argv[1][0] !== '/') {
+  process.argv[1] = './' + process.argv[1]
+}
 
 Module.runMain()
 
