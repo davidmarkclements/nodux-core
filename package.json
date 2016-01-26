@@ -2,7 +2,7 @@
   "name": "nodux-core",
   "version": "0.0.14",
   "files": [
-    "os"
+    "os/vmlinuz64"
   ],
   "author": "David Mark Clements",
   "scripts": {
