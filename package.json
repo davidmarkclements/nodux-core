@@ -17,5 +17,15 @@
   "dependencies": {
     "nodux-core-a": "0.0.6",
     "nodux-core-b": "0.0.6"
-  }
+  },
+  "description": "A Tiny Core Linux build that includes node.js",
+  "main": "download.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidmarkclements/nodux-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidmarkclements/nodux-core/issues"
+  },
+  "homepage": "https://github.com/davidmarkclements/nodux-core#readme"
 }
