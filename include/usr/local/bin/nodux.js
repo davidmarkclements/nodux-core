@@ -17,6 +17,7 @@
 
 var pid = process.env.PID
 var env = require('/host/env/' + pid + '.json')
+
 var Module = require('module')
 var path = require('path')
 var fs = require('fs')
@@ -26,8 +27,17 @@ var cwd = env.NODUX_HOST_CWD
 var hostenv = env.NODUX_HOST_ENV ? JSON.parse(env.NODUX_HOST_ENV) : {}
 var filename = process.argv[2]
 
-process.chdir('/host')
-posix.chroot('/host')
+
+fs.writeFileSync('/proc/sys/kernel/core_pattern', '/home/tc/%p.%t.core')
+posix.setrlimit('core', {soft: null, hard: null})
+
+if (!env.__NODUX_KLUDGE_JAIL__) {
+  chrootJail()
+}
+
+if (env.__NODUX_KLUDGE_JAIL__) {
+  kludgeJail()
+}
 
 Object.keys(require.cache).forEach(function (k) {
   delete require.cache[k]
@@ -73,6 +83,10 @@ process.argv.splice(1, 1)
 
 if (process.argv[1][0] !== '.' && process.argv[1][0] !== '/') {
   process.argv[1] = './' + process.argv[1]
+}
+
+if (env.__NODUX_KLUDGE_JAIL__ && process.argv[1][0] === '.') {
+  process.argv[1] = path.resolve(process.cwd() + '/' + process.argv[1])
 }
 
 Module.runMain()
@@ -210,4 +224,49 @@ function isUtf8(bytes) {
   }
 
   return true
+}
+
+
+function chrootJail() {
+  process.chdir('/host')
+  posix.chroot('/host')
+}
+
+function kludgeJail() {
+
+  path._makeLong = function (p) {
+    if (/^\/host/.test(p)) {
+      return p
+    }
+    return '/host' + p
+  }
+
+  process.chdir = (function (chdir) {
+    return function (p) {
+      if (/^\/host/.test(p)) {
+        return chdir(p)
+      }
+      return chdir('/host' + p)
+    }
+  }(process.chdir))
+
+  process.cwd = (function (cwd) {
+    return function() {
+      var d = cwd()
+      return d.replace(/^\/host/, '')
+    }
+  }(process.cwd))
+
+  Module.prototype._compile = (function (compile) {
+    return function (content, filename) {
+      var pd = path.dirname
+      path.dirname = function (p) {
+        return p.replace(/^\/host/, '')
+      }
+      var result = compile.call(this, content, filename)
+      path.dirname = pd
+      return result
+    }
+  }(Module.prototype._compile))
+
 }
