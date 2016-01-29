@@ -261,7 +261,7 @@ function kludgeJail() {
     return function (content, filename) {
       var pd = path.dirname
       path.dirname = function (p) {
-        return p.replace(/^\/host/, '')
+        return pd(p).replace(/^\/host/, '')
       }
       var result = compile.call(this, content, filename)
       path.dirname = pd

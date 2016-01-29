@@ -15,8 +15,8 @@
     "download-stream": "^1.0.1"
   },
   "dependencies": {
-    "nodux-core-a": "0.0.10",
-    "nodux-core-b": "0.0.10"
+    "nodux-core-a": "0.0.11",
+    "nodux-core-b": "0.0.11"
   },
   "description": "A Tiny Core Linux build that includes node.js",
   "main": "download.js",
