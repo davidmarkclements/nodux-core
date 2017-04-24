@@ -1,9 +1,7 @@
 var fs = require('fs')
 var path = require('path')
 var dl = require('download-stream')
-var server = 'http://tinycorelinux.net/6.x/x86_64/'
-//fallback mirror:
-// var server = 'http://distro.ibiblio.org/tinycorelinux/6.x/x86_64/'
+var server = 'https://ftp.nluug.nl/ftp/pub/os/Linux/distr/tinycorelinux/6.x/x86_64/'
 
 var dist = server + 'release/distribution_files/'
 var out = path.join(__dirname, 'src')
